@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/ptdrpg/chi/init/scrypt/handler"
 	"github.com/ptdrpg/chi/init/scrypt/helper"
+	"github.com/ptdrpg/chi/init/scrypt/service"
 )
 
 func main() {
@@ -19,15 +21,11 @@ func main() {
 		helper.ShowHelp()
 		return
 	}
-	
-	//request traitement
+
 	if os.Args[1] == "-c" {
 		projectName := os.Args[2]
-		err := os.Mkdir(projectName, 0755)
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
+		db := handler.AskDB()
+		service.Create(projectName, db)
 	}
 
 }

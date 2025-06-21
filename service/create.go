@@ -4,7 +4,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"sync"
 
 	"github.com/ptdrpg/chi/init/scrypt/handler"
 )
@@ -26,24 +25,11 @@ func Create(directory string, db string) {
 		handler.ErrorHandler(err)
 	}
 
-	var wg sync.WaitGroup
-	funcs := []func() {
-		//create all necessary folder
-		func() {handler.CreateNecessaryFolder(directory)},
-		//Get all dependancies
-		func() {handler.AddAllDependancies(directory, db)},
-	}
+	//create all necessary folder
+	handler.CreateNecessaryFolder(directory)
+	//Get all dependancies
+	handler.AddAllDependancies(directory, db)
 
-	//run functions in parallel
-	for _,f := range funcs {
-		wg.Add(1)
-		go func(fn func()) {
-			defer wg.Done()
-			fn()
-		}(f)
-	}
-
-	wg.Wait()
 
 
 	//create main.go
@@ -53,5 +39,4 @@ func Create(directory string, db string) {
 		handler.ErrorHandler(err)
 	}
 	file.Close()
-
 }
