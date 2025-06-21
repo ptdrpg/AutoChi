@@ -6,9 +6,10 @@ import (
 	"path/filepath"
 
 	"github.com/ptdrpg/chi/init/scrypt/handler"
+	"github.com/ptdrpg/chi/init/scrypt/templates"
 )
 
-//create project's base
+// create project's base
 func Create(directory string, db string) {
 	//create project folder
 	err := os.Mkdir(directory, 0755)
@@ -30,13 +31,26 @@ func Create(directory string, db string) {
 	//Get all dependancies
 	handler.AddAllDependancies(directory, db)
 
-
-
-	//create main.go
-	mainPath:= filepath.Join(directory, "main.go")
-	file, err := os.Create(mainPath)
+	variableEnv := `DB_HOST=localhost
+	DB_USER=dbusername
+	DB_PASSWORD=dbpassword
+	DB_NAME=dbname
+	DB_PORT=5432
+	SECRET_KEY=secretkey`
+	envPath := filepath.Join(directory, ".env")
+	env, err := os.Create(envPath)
 	if err != nil {
 		handler.ErrorHandler(err)
 	}
-	file.Close()
+	env.Write([]byte(variableEnv))
+	env.Close()
+
+	//create main.go
+	mainPath := filepath.Join(directory, "main.go")
+	main, err := os.Create(mainPath)
+	if err != nil {
+		handler.ErrorHandler(err)
+	}
+	main.Close()
+	templates.WriteMain(directory)
 }
