@@ -52,5 +52,7 @@ func Create(directory string, db string) {
 		handler.ErrorHandler(err)
 	}
 	main.Close()
+	
+	templates.ConfigDB(directory, db)
 	templates.WriteMain(directory)
 }

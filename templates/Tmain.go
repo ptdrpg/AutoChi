@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+
+	"github.com/ptdrpg/chi/init/scrypt/handler"
 )
 
-func WriteMain(directory string) error {
+func WriteMain(directory string) {
 	content := fmt.Sprintf(`
 		package main
 
@@ -20,7 +22,6 @@ func main() {
 
 	err := os.WriteFile(filepath.Join(directory, "main.go"), []byte(content),0755)
 	if err != nil {
-		return err
+		handler.ErrorHandler(err)
 	}
-	return nil
 }
