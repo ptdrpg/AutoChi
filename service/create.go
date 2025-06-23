@@ -26,6 +26,14 @@ func Create(directory string, db string) {
 		handler.ErrorHandler(err)
 	}
 
+	initGit := exec.Command("git", "init")
+	initGit.Dir = directory
+	initGit.Stderr = os.Stderr
+	err = initGit.Run()
+	if err != nil {
+		handler.ErrorHandler(err)
+	}
+
 	//create all necessary folder
 	handler.CreateNecessaryFolder(directory)
 	//Get all dependancies
