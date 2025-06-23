@@ -7,7 +7,7 @@ import (
 )
 
 func AddAllDependancies(directory string, db string) {
-	var ressources = []string{"gorm.io/gorm", "github.com/go-chi/chi/v5", "github.com/joho/godotenv", filepath.Join("gorm.io/driver/", db)}
+	var ressources = []string{"gorm.io/gorm", "github.com/go-chi/chi/v5", "github.com/joho/godotenv", filepath.Join("gorm.io/driver/", db), "github.com/spf13/cobra"}
 	for _, dep := range ressources {
 		installDep := exec.Command("go", "get", dep)
 		installDep.Dir = directory

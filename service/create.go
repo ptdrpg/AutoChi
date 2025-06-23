@@ -55,4 +55,8 @@ func Create(directory string, db string) {
 	
 	templates.ConfigDB(directory, db)
 	templates.WriteMain(directory)
+	templates.WritteCmd(directory)
+	templates.WriteRepository(directory)
+	templates.WriteController(directory)
+	templates.WritteRouter(directory)
 }
