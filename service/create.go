@@ -5,8 +5,8 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/ptdrpg/chi/init/scrypt/handler"
-	"github.com/ptdrpg/chi/init/scrypt/templates"
+	"github.com/ptdrpg/chiS/handler"
+	"github.com/ptdrpg/chiS/templates"
 )
 
 // create project's base
@@ -38,7 +38,7 @@ func Create(directory string, db string) {
 		handler.ErrorHandler(err)
 	}
 	main.Close()
-	
+
 	templates.ConfigDB(directory, db)
 	templates.WriteMain(directory)
 	templates.WritteCmd(directory)

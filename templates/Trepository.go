@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ptdrpg/chi/init/scrypt/handler"
+	"github.com/ptdrpg/chiS/handler"
 )
 
 func WriteRepository(directory string) {

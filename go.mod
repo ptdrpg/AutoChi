@@ -1,4 +1,4 @@
-module github.com/ptdrpg/chi/init/scrypt
+module github.com/ptdrpg/chiS
 
 go 1.23.6
 

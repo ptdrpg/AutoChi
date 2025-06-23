@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ptdrpg/chi/init/scrypt/handler"
-	"github.com/ptdrpg/chi/init/scrypt/service"
+	"github.com/ptdrpg/chiS/handler"
+	"github.com/ptdrpg/chiS/service"
 )
 
 func main() {
