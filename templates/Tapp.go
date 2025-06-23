@@ -81,7 +81,20 @@ func COnnexion() {
 	}
 	if db != "sqlite" {
 		app.Write([]byte(sql))
-	}else {
+	} else {
+		variableEnv := `DB_HOST=localhost
+	DB_USER=dbusername
+	DB_PASSWORD=dbpassword
+	DB_NAME=dbname
+	DB_PORT=5432
+	SECRET_KEY=secretkey`
+		envPath := filepath.Join(directory, ".env")
+		env, err := os.Create(envPath)
+		if err != nil {
+			handler.ErrorHandler(err)
+		}
+		env.Write([]byte(variableEnv))
+		env.Close()
 		app.Write([]byte(sqlLite))
 	}
 	app.Close()

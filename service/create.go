@@ -31,20 +31,6 @@ func Create(directory string, db string) {
 	//Get all dependancies
 	handler.AddAllDependancies(directory, db)
 
-	variableEnv := `DB_HOST=localhost
-	DB_USER=dbusername
-	DB_PASSWORD=dbpassword
-	DB_NAME=dbname
-	DB_PORT=5432
-	SECRET_KEY=secretkey`
-	envPath := filepath.Join(directory, ".env")
-	env, err := os.Create(envPath)
-	if err != nil {
-		handler.ErrorHandler(err)
-	}
-	env.Write([]byte(variableEnv))
-	env.Close()
-
 	//create main.go
 	mainPath := filepath.Join(directory, "main.go")
 	main, err := os.Create(mainPath)

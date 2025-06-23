@@ -43,27 +43,27 @@ func NewRouter(c *controller.Controller) *Router {
 }
 
 func (r *Router) RegisterRouter() {
-	r.R.Group(func(public chi.Router) {
-		public.Route("/api/v1/login", func(login chi.Router) {
-			login.Post("/", r.C.Login)
-		})
-	})
+	// r.R.Group(func(public chi.Router) {
+	// 	public.Route("/api/v1/login", func(login chi.Router) {
+	// 		login.Post("/", r.C.Login)
+	// 	})
+	// })
 
-	r.R.Group(func(private chi.Router) {
-		// private.Use(lib.JWTMiddleware)
-		private.Route("/api/v1", func(v1 chi.Router) {
-			v1.Route("/users", func(users chi.Router) {
-				users.Get("/", r.C.GetAllUsers)
-				users.Post("/newVisitor", r.C.CreateUser)
-				users.Put("/reabilite/{id}", r.C.ActualiseUser)
-				users.Delete("/delete/{id}", r.C.DeleteUser)
-			})
-			v1.Route("/movies", func(movies chi.Router) {
-				movies.Get("/list", r.C.MoviesList)
-				movies.Get("/stream", r.C.Stream)
-			})
-		})
-	})
+	// r.R.Group(func(private chi.Router) {
+	// 	// private.Use(lib.JWTMiddleware)
+	// 	private.Route("/api/v1", func(v1 chi.Router) {
+	// 		v1.Route("/users", func(users chi.Router) {
+	// 			users.Get("/", r.C.GetAllUsers)
+	// 			users.Post("/newVisitor", r.C.CreateUser)
+	// 			users.Put("/reabilite/{id}", r.C.ActualiseUser)
+	// 			users.Delete("/delete/{id}", r.C.DeleteUser)
+	// 		})
+	// 		v1.Route("/movies", func(movies chi.Router) {
+	// 			movies.Get("/list", r.C.MoviesList)
+	// 			movies.Get("/stream", r.C.Stream)
+	// 		})
+	// 	})
+	// })
 }
 
 func (r *Router) Handler() http.Handler {

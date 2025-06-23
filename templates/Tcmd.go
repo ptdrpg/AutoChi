@@ -30,7 +30,7 @@ var rootCmd = &cobra.Command{
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		app.COnnexion()
+		app.Connexion()
 		db := app.DB
 		repo := repository.NewRepository(db)
 		ctrl := controller.NewController(db, repo)
