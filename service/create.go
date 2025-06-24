@@ -34,6 +34,14 @@ func Create(directory string, db string) {
 		handler.ErrorHandler(err)
 	}
 
+	branchRename := exec.Command("git", "branch", "-M", "main")
+	branchRename.Dir = directory
+	branchRename.Stderr = os.Stderr
+	err = branchRename.Run()
+	if err != nil {
+		handler.ErrorHandler(err)
+	}
+
 	//create all necessary folder
 	handler.CreateNecessaryFolder(directory)
 	//Get all dependancies

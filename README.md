@@ -9,3 +9,11 @@ Install the package:
 ```bash
 go install github.com/ptdrpg/chiS
 ```
+
+### Use
+
+Use it with params 'create' or '-c'
+
+```bash
+chiS create [app_name]
+```

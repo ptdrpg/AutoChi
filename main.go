@@ -21,7 +21,7 @@ func main() {
 		return
 	}
 
-	if os.Args[1] == "-c" {
+	if os.Args[1] == "-c" || os.Args[1] == "create" {
 		projectName := os.Args[2]
 		db := handler.AskDB()
 		service.Create(projectName, db)
